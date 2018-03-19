@@ -56,7 +56,9 @@ public class ForkJoinTest {
         byte[] bytes = Files.readAllBytes(Paths.get(file.toURI()));
         String[] numbers = new String(bytes, "UTF-8").split("\n");
 
-        int result = 0; // do uzupełnienia pool.invoke(...)
+        int result = pool.invoke(new LongestSequenceTask(0, numbers.length,
+            Arrays.asList(numbers).stream().mapToInt(Integer::parseInt).toArray()))
+            .getLength();
         Assert.assertEquals(10, result);
     }
 }
