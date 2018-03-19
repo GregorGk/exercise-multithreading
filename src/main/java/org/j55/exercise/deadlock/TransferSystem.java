@@ -8,9 +8,7 @@ import java.util.Map;
 public abstract class TransferSystem {
 
     public static void transfer(BankAccount source, BankAccount target, int amount) {
-      Map.Entry<BankAccount,  BankAccount> transactionAccounts =
-          Map.entry(source, target);
-        synchronized (transactionAccounts) {
+        synchronized (Map.entry(source, target)) {
                 source.widthraw(amount);
                 target.deposit(amount);
         }
