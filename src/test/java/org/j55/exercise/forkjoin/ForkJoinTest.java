@@ -1,5 +1,6 @@
 package org.j55.exercise.forkjoin;
 
+import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +39,8 @@ public class ForkJoinTest {
         byte[] bytes = Files.readAllBytes(Paths.get(file.toURI()));
         String[] numbers = new String(bytes, "UTF-8").split("\n");
 
-        int result = 0; // do uzupełnienia pool.invoke(...)
+        int result = pool.invoke(new MaxValueTask(0, numbers.length,
+            Arrays.asList(numbers).stream().mapToInt(Integer::parseInt).toArray()));
         Assert.assertEquals(10000, result);
     }
 
