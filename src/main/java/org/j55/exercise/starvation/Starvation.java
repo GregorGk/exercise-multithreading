@@ -14,7 +14,7 @@ public class Starvation {
     }
 
     static class Worker {
-        synchronized void doWork() {
+        void doWork() {
             String name = Thread.currentThread().getName();
 
             while (true) {
