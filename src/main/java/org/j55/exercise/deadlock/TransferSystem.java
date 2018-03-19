@@ -1,16 +1,18 @@
 package org.j55.exercise.deadlock;
 
+import java.util.Map;
+
 /**
  * Wydmuszka systemu rozliczeniowego.
  */
 public abstract class TransferSystem {
 
     public static void transfer(BankAccount source, BankAccount target, int amount) {
-        synchronized (source) {
-            source.widthraw(amount);
-            synchronized (target) {
+      Map.Entry<BankAccount,  BankAccount> transactionAccounts =
+          Map.entry(source, target);
+        synchronized (transactionAccounts) {
+                source.widthraw(amount);
                 target.deposit(amount);
-            }
         }
     }
 }
