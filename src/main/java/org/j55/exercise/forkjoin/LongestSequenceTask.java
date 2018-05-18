@@ -53,8 +53,6 @@ public class LongestSequenceTask extends RecursiveTask<LongestSequenceResult> {
                 currentSequenceLength++;
             } else if (!(previousBelongsToDesiredSequence) && currentBelongsToDesiredSequence) {
                 currentSequenceLength = 1;
-                if (currentSequenceLength != 0)
-                    sequenceLengths.add(currentSequenceLength);
             } else {
                 if (currentSequenceLength != 0)
                     sequenceLengths.add(currentSequenceLength);
